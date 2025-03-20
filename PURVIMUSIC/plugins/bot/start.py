@@ -29,25 +29,51 @@ from strings import get_string
 #--------------------------
 
 NEXI_VID = [
-"https://telegra.ph/file/1a3c152717eb9d2e94dc2.mp4",
-"https://files.catbox.moe/ln00jb.mp4",
-"https://graph.org/file/83ebf52e8bbf138620de7.mp4",
-"https://files.catbox.moe/0fq20c.mp4",
-"https://graph.org/file/318eac81e3d4667edcb77.mp4",
-"https://graph.org/file/7c1aa59649fbf3ab422da.mp4",
-"https://files.catbox.moe/t0nepm.mp4",
-
+"https://graph.org/file/eaa3a2602e43844a488a5.jpg",
+"https://graph.org/file/b129e98b6e5c4db81c15f.jpg",
+"https://graph.org/file/3ccb86d7d62e8ee0a2e8b.jpg",
+"https://graph.org/file/df11d8257613418142063.jpg",
+"https://graph.org/file/9e23720fedc47259b6195.jpg",
+"https://graph.org/file/826485f2d7db6f09db8ed.jpg",
+"https://graph.org/file/ff3ad786da825b5205691.jpg",
+"https://graph.org/file/52713c9fe9253ae668f13.jpg",
+"https://graph.org/file/8f8516c86677a8c91bfb1.jpg",
+"https://graph.org/file/6603c3740378d3f7187da.jpg",
+"https://graph.org/file/66cb6ec40eea5c4670118.jpg",
+"https://graph.org/file/2e3cf4327b169b981055e.jpg",
 ]
 
 @app.on_message(filters.command(["start"]) & filters.private & ~BANNED_USERS)
 @LanguageStart
 async def start_pm(client, message: Message, _):
     await add_served_user(message.from_user.id)
+    
+    # Typing effect part
+    typing_message = await message.reply("<b>ᴅɪηɢ..ᴅσηɢ..🥀</b>")  # Initial message
+    
+    # Simulate typing
+    typing_text = "**𝖲ᴛᴧʀᴛɪηɢ...❤️‍🔥**"
+    
+    for i in range(1, len(typing_text) + 1):  # Loop through each character
+        try:
+            await typing_message.edit_text(typing_text[:i])
+            await asyncio.sleep(0.001)  # Add delay to simulate typing
+        except Exception as e:
+            print(f"Error while editing message: {e}")  # Print error if occurs
+
+    await asyncio.sleep(2)  # Keep message for a while
+    await typing_message.delete()  # Delete the message
+
+    # Continue with the existing logic after typing effect
     if len(message.text.split()) > 1:
         name = message.text.split(None, 1)[1]
+
+        if name[0:3] == "del":
+            await del_plist_msg(client=client, message=message, _=_)
+        
         if name[0:4] == "help":
             keyboard = help_pannel(_)
-            return await message.reply_video(
+            return await message.reply_photo(
                 random.choice(NEXI_VID),
                 caption=_["help_1"].format(config.SUPPORT_CHAT),
                 reply_markup=keyboard,
@@ -99,21 +125,7 @@ async def start_pm(client, message: Message, _):
                 )
     else:
         out = private_panel(_)
-        baby = await message.reply_text(f"**▒▒▒▒▒▒▒▒▒▒ 0%**")
-        await baby.edit_text(f"**█▒▒▒▒▒▒▒▒▒ 10%**")
-        await baby.edit_text(f"**██▒▒▒▒▒▒▒▒ 20%**")
-        await baby.edit_text(f"**███▒▒▒▒▒▒▒ 30%**")
-        await baby.edit_text(f"**████▒▒▒▒▒▒ 40%**")
-        await baby.edit_text(f"**█████▒▒▒▒▒ 50%**")
-        await baby.edit_text(f"**██████▒▒▒▒ 60%**")
-        await baby.edit_text(f"**███████▒▒▒ 70%**")
-        await baby.edit_text(f"**████████▒▒ 80%**")
-        await baby.edit_text(f"**█████████▒ 90%**")
-        await baby.edit_text(f"**██████████ 100%**")
-        await baby.edit_text(f"**❖ ʙᴏᴛ sᴛᴀʀᴛᴇᴅ..**")
-        await baby.delete()
-        
-        await message.reply_video(
+        await message.reply_photo(
             random.choice(NEXI_VID),
             caption=_["start_2"].format(message.from_user.mention, app.mention),
             reply_markup=InlineKeyboardMarkup(out),
@@ -130,7 +142,7 @@ async def start_pm(client, message: Message, _):
 async def start_gp(client, message: Message, _):
     out = start_panel(_)
     uptime = int(time.time() - _boot_)
-    await message.reply_video(
+    await message.reply_photo(
         random.choice(NEXI_VID),
         caption=_["start_1"].format(app.mention, get_readable_time(uptime)),
         reply_markup=InlineKeyboardMarkup(out),
@@ -165,7 +177,7 @@ async def welcome(client, message: Message):
                     return await app.leave_chat(message.chat.id)
 
                 out = start_panel(_)
-                await message.reply_video(
+                await message.reply_photo(
                     random.choice(NEXI_VID),
                     caption=_["start_3"].format(
                         message.from_user.mention,
