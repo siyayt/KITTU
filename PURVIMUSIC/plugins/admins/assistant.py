@@ -6,7 +6,7 @@ import asyncio
 from pyrogram import filters
 from pyrogram.enums import ChatMemberStatus
 from PURVIMUSIC import app
-from PURVIMUSIC.utils.Sonali_ban import admin_filter
+from PURVIMUSIC.utils.purvi_ban import admin_filter
 from PURVIMUSIC.utils.database import get_assistant
 
 links = {}
