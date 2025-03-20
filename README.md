@@ -6,9 +6,6 @@
   <img src="https://files.catbox.moe/971v6c.jpg">
 </p>
 
-
-<p align="center"><img src="https://camo.githubusercontent.com/0b26c9160fb9f58f42db5d7185898a24d69f583444fe512d799a20db91face2c/68747470733a2f2f70726f66696c652d636f756e7465722e676c697463682e6d652f5961736972416b687461722f636f756e742e737667"></p>
-
 <p align="center">
 <b>𝗗𝗘𝗣𝗟𝗢𝗬𝗠𝗘𝗡𝗧 𝗠𝗘𝗧𝗛𝗢𝗗𝗦</b>
 </p>
