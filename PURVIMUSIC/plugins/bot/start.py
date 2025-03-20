@@ -1,5 +1,6 @@
 import time
 import random
+import asyncio
 from pyrogram import filters
 from pyrogram.enums import ChatType
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
@@ -52,7 +53,7 @@ async def start_pm(client, message: Message, _):
     typing_message = await message.reply("<b>ᴅɪηɢ..ᴅσηɢ..🥀</b>")  # Initial message
     
     # Simulate typing
-    typing_text = "**𝖲ᴛᴧʀᴛɪηɢ...❤️‍🔥**"
+    typing_text = "<b>𝖲ᴛᴧʀᴛɪηɢ...❤️‍🔥</b>**"
     
     for i in range(1, len(typing_text) + 1):  # Loop through each character
         try:
@@ -61,7 +62,7 @@ async def start_pm(client, message: Message, _):
         except Exception as e:
             print(f"Error while editing message: {e}")  # Print error if occurs
 
-    await asyncio.sleep(2)  # Keep message for a while
+    await asyncio.sleep(1)  # Keep message for a while
     await typing_message.delete()  # Delete the message
 
     # Continue with the existing logic after typing effect
