@@ -1,20 +1,14 @@
-# 𝗔𝗟𝗣𝗛𝗔-𝗠𝗨𝗦𝗜𝗖 
- ➥ 𝖥ɪʀsᴛ 𝖥ᴏʀᴋ 𝖳ʜɪs 𝖱ᴇʀᴏ 𝖠ɴᴅ 𝖦ɪᴠᴇ ᴀ 𝖲ᴛᴀʀ ⭐
-➥ 𝖳ʜᴇɴ ʜᴏsᴛ ᴏɴ ʜᴇʀᴋᴏᴜ / ᴠᴘs / ᴋᴏʏᴀʙ / ᴇᴛᴄ..👨🏻‍💻
-<h1 align="center"
- 
-### 🚩🚩 जय बजरंग बली 🚩🚩
-<h1 align="center"
-  
-<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
-<img src="https://readme-typing-svg.herokuapp.com?color=FF0085&width=620&lines=🍁+🚩+𝗣𝗢𝗪𝗘𝗥𝗘𝗗+𝗕𝗬+𝗥𝗔𝗨𝗦𝗛𝗔𝗡+𝗞𝗜𝗡𝗚+𝗔𝗥𝗔+🚩+🍁"></b></h3>
-<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
-<h1 align="center"><b>𝐓ᴇᴀᴍ 𝐏ᴜʀᴠɪ 𝐁ᴏᴛs</b></h1>
-<p align="center"><a href="https://ll_ALPHA_BABY_lll"><img src="https://telegra.ph/file/207afbc175113d14d1231.jpg" width="400"></a></p>
-<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+<h2 align="center">
+    ───「 sᴜᴍᴏ ᴍᴜsɪᴄ 」───
+</h2>
 
+<p align="center">
+  <img src="https://files.catbox.moe/971v6c.jpg">
 </p>
-ʀᴀᴜsʜᴀɴ
+
+
+<p align="center"><img src="https://camo.githubusercontent.com/0b26c9160fb9f58f42db5d7185898a24d69f583444fe512d799a20db91face2c/68747470733a2f2f70726f66696c652d636f756e7465722e676c697463682e6d652f5961736972416b687461722f636f756e742e737667"></p>
+
 <p align="center">
 <b>𝗗𝗘𝗣𝗟𝗢𝗬𝗠𝗘𝗡𝗧 𝗠𝗘𝗧𝗛𝗢𝗗𝗦</b>
 </p>
@@ -23,42 +17,83 @@
     ─「 ᴅᴇᴩʟᴏʏ ᴏɴ ʜᴇʀᴏᴋᴜ 」─
 </h3>
 
-<p align="center"><a href="https://dashboard.heroku.com/new?template=https://github.com/TEAMPURVI/SONALI"> <img src="https://img.shields.io/badge/Deploy%20On%20Heroku-green?style=for-the-badge&logo=heroku" width="220" height="38.45"/></a></p>
+<p align="center"><a href="https://dashboard.heroku.com/new?template=https://github.com/Im-NotCoder/NhiPta"> <img src="https://www.herokucdn.com/deploy/button.svg"></a></p>
 
+<br />
+
+---
+
+### 🔧 Quick Setup
+
+1. **Upgrade & Update:**
+   ```bash
+   sudo apt-get update && sudo apt-get upgrade -y
+   ```
+
+2. **Install Required Packages:**
+   ```bash
+   sudo apt-get install python3-pip ffmpeg -y
+   ```
+3. **Setting up PIP**
+   ```bash
+   sudo pip3 install -U pip
+   ```
+4. **Installing Node**
+   ```bash
+   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash && source ~/.bashrc && nvm install v18
+   ```
+5. **Clone the Repository**
+   ```bash
+   git clone https://github.com/Im-NotCoder/NhiPta && cd NhiPta
+   ```
+6. **Install Requirements**
+   ```bash
+   pip3 install -U -r requirements.txt
+   ```
+7. **Create .env  with sample.env**
+   ```bash
+   cp sample.env .env
+   ```
+   - Edit .env with your vars
+8. **Editing Vars:**
+   ```bash
+   vi .env
+   ```
+   - Edit .env with your values.
+   - Press `I` button on keyboard to start editing.
+   - Press `Ctrl + C`  once you are done with editing vars and type `:wq` to save .env or `:qa` to exit editing.
+9. **Installing tmux**
+    ```bash
+    sudo apt install tmux -y && tmux
+    ```
+10. **Run the Bot**
+    ```bash
+    bash start
+    ```
+
+---
+
+
+
+---
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
 
 <h3 align="center">
-    ─「 ᴅᴇᴩʟᴏʏ ᴏɴ ʟᴏᴄᴀʟ ʜᴏsᴛ / ᴠᴘs 」─
+    ─「 sᴜᴩᴩᴏʀᴛ 」─
 </h3>
 
-- Get your [Necessary Variables](https://github.com/TEAMPURVI/SONALI/blob/main/sample.env)
-- Upgrade and Update by :
-`sudo apt-get update && sudo apt-get upgrade -y`
-- Install Ffmpeg & Python by :
-`sudo apt-get install python3-pip ffmpeg -y`
-- Install pip by :
-`sudo pip3 install -U pip`
-- Install Node js by :
-`curl -fssL https://deb.nodesource.com/setup_19.x | sudo -E bash - && sudo apt-get install nodejs -y && npm i -g npm`
-- Clone the repository by :
-`git clone https://github.com/TEAMPURVI/SONALI && cd SONALI`
-- Install requirements by :
-`pip3 install -U -r requirements.txt`
-- Fill your variables in the env by :
-`vi sample.env`<br>
-Press `I` on the keyboard for editing env<br>
-Press `Ctrl+C` when you're done with editing env and `:wq` to save the env<br>
-- Rename the env file by :
-`mv sample.env .env`
-- Install tmux to keep running your bot when you close the terminal by :
-`sudo apt install tmux && tmux`
-- Finally run the bot by :
-`bash start`
-- For getting out from tmux session : Press `Ctrl+b` and then `d`<br>
-━━━━━━━━━━━━━━━━━━━━
+<p align="center">
+<a href="https://t.me/PURVI_UPDATES"><img src="https://img.shields.io/badge/-Support%20Group-blue.svg?style=for-the-badge&logo=Telegram"></a>
+</p>
 
+<p align="center">
+<a href="https://t.me/PURVI_SUPPORT"><img src="https://img.shields.io/badge/-Update%20Channel-blue.svg?style=for-the-badge&logo=Telegram"></a>
+</p>
 
+<br />
 
-### Contact :
-<a href="https://t.me/ll_ALPHA_BABY_lll"><img title="Telegram" src="https://img.shields.io/badge/Telegram-%23000000.svg?&style=for-the-badge&logo=telegram&logoColor=61DAFB"></a>
+---
 
-<a href="https://instagram.com/careless__02"><img title="Instagram" src="https://img.shields.io/badge/instagram-%23E4405F.svg?&style=for-the-badge&logo=instagram&logoColor=white"></a>
+<br />
+
+- <b> _Sᴩᴇᴄɪᴀʟ ᴛʜᴀɴᴋs ᴛᴏ [ᴀʟᴘʜᴀ](https://github.com/TEAMPURVI) ғᴏʀ [ɴᴇᴡ ᴍᴜsɪᴄ](https://github.com/Im-NotCoder/NhiPta)._ </b>
