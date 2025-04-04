@@ -1,4 +1,5 @@
 from pyrogram import Client, filters
+from PURVIMUSIC import app
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 @app.on_edited_message(filters.group)
