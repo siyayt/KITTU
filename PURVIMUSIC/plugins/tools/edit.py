@@ -1,25 +1,25 @@
-import asyncio
-import nest_asyncio
-from telegram import Update
-from telegram.ext import ApplicationBuilder, MessageHandler, filters, CallbackContext
+from pyrogram import Client, filters
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from PURVIMUSIC import app
 
-# PyDroid3 में Asyncio के Loop को Fix करें
-nest_asyncio.apply()
-
-# अपना बॉट टोकन डालें
-BOT_TOKEN = "7741317454:AAHXf8bkM1JZtBBK5Nn02MXtncThtBPOJ-A"
-
-async def delete_edited_message(update: Update, context: CallbackContext):
-    """जब कोई यूज़र मैसेज एडिट करेगा, तो उसे डिलीट कर देगा।"""
-    if update.edited_message:
-        chat_id = update.edited_message.chat_id
-        message_id = update.edited_message.message_id
-        await context.bot.delete_message(chat_id=chat_id, message_id=message_id)
-        print(f"Deleted edited message in chat: {chat_id}")
-
-async def main():
-    """बॉट को स्टार्ट करता है और हैंडलर जोड़ता है।"""
-    app = ApplicationBuilder().token(BOT_TOKEN).build()
-
-    # एडिट किए गए मैसेज को मॉनिटर करने के लिए हैंडलर जोड़ें
-    app.add_handler(MessageHandler(filters.UpdateType.EDITED_MESSAGE, delete_edited_message))
+@app.on_edited_message(filters.group)
+async def delete_edited_messages(client, message):
+    try:
+        # Check if the message was actually edited (i.e., has an edit_date)
+        if message.edit_date:
+            await message.delete()
+            
+            user_mention = f"<a href='tg://user?id={message.from_user.id}'>{message.from_user.mention}</a>"
+            keyboard = InlineKeyboardMarkup([
+                [
+                    InlineKeyboardButton("𝖠𝖽𝖽 𝗆𝖾 𝖡𝖺𝖡𝗒", url=f"https://t.me/{client.me.username}?startgroup=true"),
+                    InlineKeyboardButton("𝖡𝗈𝗍 𝖲𝗎𝗉𝗉𝗈𝗋𝗍", url="https://t.me/purvi_support")
+                ]
+            ])
+            await client.send_message(
+                chat_id=message.chat.id,
+                text=f"**⚠ 𝖬𝖾𝗌𝗌𝖺𝗀𝖾 𝖾𝖽𝗂𝗍𝖾𝖽 𝖻𝗒 {user_mention}. 𝖳𝗁𝖾 𝖬𝖾𝗌𝗌𝖺𝗀𝖾 𝖧𝖺𝗌 𝖡𝖾𝖾𝗇 𝖣𝖾𝗅𝖾𝗍𝖾𝖽.**",
+                reply_markup=keyboard
+            )
+    except Exception as e:
+        print(f"Error: {e}")
