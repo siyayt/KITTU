@@ -27,8 +27,6 @@ LOGGER_ID = int(getenv("LOGGER_ID", -1002141133985))
 # ----------------------------------------------------------------
 OWNER_ID = int(getenv("OWNER_ID", 7403621976))
 # ----------------------------------------------------------------
-API_URL = getenv("API_URL", 'https://api.thequickearn.xyz') #youtube song url
-API_KEY = getenv("API_KEY", '') # youtube song api ke# ----------------------------------------------------------------
 
 UPSTREAM_REPO = getenv(
     "UPSTREAM_REPO",
