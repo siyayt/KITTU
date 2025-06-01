@@ -31,8 +31,11 @@ DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 17000))
 LOGGER_ID = int(getenv("LOGGER_ID", -1002141133985))
 # ----------------------------------------------------------------
 OWNER_ID = int(getenv("OWNER_ID", 7403621976))
+# ---------------------------------------------------------------
+HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
 # ----------------------------------------------------------------
-
+HEROKU_API_KEY = getenv("HEROKU_API_KEY")
+# ----------------------------------------------------
 UPSTREAM_REPO = getenv(
     "UPSTREAM_REPO",
     "https://github.com/IstkharXrobot/NhiPta",
