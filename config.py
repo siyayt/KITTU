@@ -6,21 +6,26 @@ from pyrogram import filters
 # ------------------------------------
 load_dotenv()
 # ------------------------------------
+# -----------------------------------------------------
 API_ID = int(getenv("API_ID"))
 API_HASH = getenv("API_HASH")
+
+EVAL = list(map(int, getenv("EVAL", "7716352578 7091230649").split()))
 # ------------------------------------------------------
 BOT_TOKEN = getenv("BOT_TOKEN")
 # -------------------------------------------------------
-OWNER_USERNAME = getenv("OWNER_USERNAME","ll_ISTKHAR_BABY_lll")
+OWNER_USERNAME = getenv("OWNER_USERNAME","Ownergit")
 # --------------------------------------------------------
-BOT_USERNAME = getenv("BOT_USERNAME","AnonyMusicRobot")
+BOT_USERNAME = getenv("BOT_USERNAME" , "ISTKHARkoBot")
 # --------------------------------------------------------
-BOT_NAME = getenv("BOT_NAME")
+BOT_NAME = getenv("BOT_NAME" , "ISTKHARko")
 # ---------------------------------------------------------
-ASSUSERNAME = getenv("ASSUSERNAME")
+ASSUSERNAME = getenv("ASSUSERNAME" , "MissYumikoo")
+# ---------------------------------------------------------
+#---------------------------------------------------------------
 #---------------------------------------------------------------
 MONGO_DB_URI = getenv("MONGO_DB_URI", None)
-#---------------------------------------------------------------
+
 DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 17000))
 # ----------------------------------------------------------------
 LOGGER_ID = int(getenv("LOGGER_ID", -1002141133985))
