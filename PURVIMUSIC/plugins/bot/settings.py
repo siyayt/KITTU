@@ -1,6 +1,9 @@
 from pyrogram import filters
 from pyrogram.enums import ChatType
 from pyrogram.errors import MessageNotModified
+from pyrogram.types import InputMediaVideo, InputMediaPhoto
+import random
+from time import time, strftime, gmtime
 from pyrogram.types import (
     CallbackQuery,
     InlineKeyboardButton,
@@ -35,6 +38,21 @@ from PURVIMUSIC.utils.inline.settings import (
 )
 from PURVIMUSIC.utils.inline.start import private_panel
 from config import BANNED_USERS, OWNER_ID
+
+NEXI_VID = [
+"https://graph.org/file/eaa3a2602e43844a488a5.jpg",
+"https://graph.org/file/b129e98b6e5c4db81c15f.jpg",
+"https://graph.org/file/3ccb86d7d62e8ee0a2e8b.jpg",
+"https://graph.org/file/df11d8257613418142063.jpg",
+"https://graph.org/file/9e23720fedc47259b6195.jpg",
+"https://graph.org/file/826485f2d7db6f09db8ed.jpg",
+"https://graph.org/file/ff3ad786da825b5205691.jpg",
+"https://graph.org/file/52713c9fe9253ae668f13.jpg",
+"https://graph.org/file/8f8516c86677a8c91bfb1.jpg",
+"https://graph.org/file/6603c3740378d3f7187da.jpg",
+"https://graph.org/file/66cb6ec40eea5c4670118.jpg",
+"https://graph.org/file/2e3cf4327b169b981055e.jpg",
+]
 
 
 @app.on_message(
@@ -73,12 +91,20 @@ async def settings_back_markup(client, CallbackQuery: CallbackQuery, _):
         await CallbackQuery.answer()
     except:
         pass
+
     if CallbackQuery.message.chat.type == ChatType.PRIVATE:
         await app.resolve_peer(OWNER_ID)
         OWNER = OWNER_ID
         buttons = private_panel(_)
-        return await CallbackQuery.edit_message_text(
-            _["start_2"].format(CallbackQuery.from_user.mention, app.mention),
+
+        return await CallbackQuery.edit_message_media(
+            InputMediaPhoto(
+                media=random.choice(NEXI_VID),
+                caption=_["start_2"].format(
+                    CallbackQuery.from_user.mention,
+                    app.mention
+                ),
+            ),
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     else:
@@ -86,6 +112,44 @@ async def settings_back_markup(client, CallbackQuery: CallbackQuery, _):
         return await CallbackQuery.edit_message_reply_markup(
             reply_markup=InlineKeyboardMarkup(buttons)
         )
+
+@app.on_callback_query(filters.regex("gib_source"))
+async def gib_repo_callback(_, callback_query):
+    await callback_query.edit_message_media(
+        media=InputMediaVideo(
+            "https://files.catbox.moe/9r3hbf.mp4", 
+            has_spoiler=True, 
+            caption="**ʟᴜɴᴅ ʟᴇʟᴇ ᴍᴇʀᴀ 😒 ʀᴇᴘᴏ ᴋʏᴀ ᴋᴀʀᴇɢᴀ.**\n  **ʟᴇɢᴀ ᴋʏᴀ ʙʜᴏsᴀᴅɪᴋᴇ 😆 ʙᴏʟ ɴᴀ ʟᴇɢᴀ ??**"
+        ),
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(text="• ʙᴀᴄᴋ •", callback_data="settingsback_helper"),
+                    InlineKeyboardButton(text="• ᴄʟᴏsᴇ •", callback_data="close")
+                ]
+            ]
+        ),
+    )
+
+@app.on_callback_query(filters.regex("^bot_info_data$"))
+async def show_bot_info(c: app, q: CallbackQuery):
+    start = time()
+    x = await c.send_message(q.message.chat.id, "ᴄʜᴇᴀᴋɪɴɢ ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ...")
+    delta_ping = time() - start
+    await x.delete()
+    txt = f"""ʏᴏᴜᴛᴜʙᴇ ᴀᴘɪ sᴛᴀᴛᴜs...💌
+
+• ᴅᴀᴛᴀʙᴀsᴇ : ᴏɴʟɪɴᴇ
+• ʏᴏᴜᴛᴜʙᴇ ᴀᴘɪ : ʀᴇsᴘᴏɴsɪᴠᴇ
+• ʙᴏᴛ sᴇʀᴠᴇʀ : ʀᴜɴɴɪɴɢ sᴍᴏᴏᴛʜʟʏ
+• ʀᴇsᴘᴏɴsᴇ ᴛɪᴍᴇ : ᴏᴘᴛɪᴍᴀʟ
+• ᴀᴘɪ ᴘɪɴɢ : {delta_ping * 1000:.3f} ms   
+
+• ᴇᴠᴇʀʏᴛʜɪɴɢ ʟᴏᴏᴋs ɢᴏᴏᴅ !!
+"""
+    await q.answer(txt, show_alert=True)
+    return
+    
 
 
 @app.on_callback_query(
