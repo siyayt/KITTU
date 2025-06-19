@@ -52,6 +52,17 @@ async def help_com_group(client, message: Message, _):
     await message.reply_text(_["help_2"], reply_markup=InlineKeyboardMarkup(keyboard))
 
 
+@app.on_callback_query(filters.regex("abot_cb") & ~BANNED_USERS)
+async def helper_cb(client, CallbackQuery):
+    bot = await client.get_me()
+    bot_mention = bot.mention
+
+    await CallbackQuery.edit_message_text(
+        Helper.HELP_ABOUT.format(bot_mention),
+        reply_markup=InlineKeyboardMarkup(BUTTONS.ABUTTON),
+    )
+    
+
 @app.on_callback_query(filters.regex("help_callback") & ~BANNED_USERS)
 @languageCB
 async def helper_cb(client, CallbackQuery, _):
