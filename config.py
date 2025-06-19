@@ -38,11 +38,12 @@ HEROKU_API_KEY = getenv("HEROKU_API_KEY")
 # ----------------------------------------------------
 UPSTREAM_REPO = getenv(
     "UPSTREAM_REPO",
-    "https://github.com/IstkharXrobot/NhiPta",
+    "https://github.com/TEAM-ISTKHAR/KITTU",
 )
 UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "main")
 GIT_TOKEN = getenv(
-    "GIT_TOKEN", None
+    "GIT_TOKEN", "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") 
+# ----------------------------------------------------------------
 )  # -----------------------------------------
 API_URL = getenv("API_URL", 'https://api.thequickearn.xyz') #youtube song url
 API_KEY = getenv("API_KEY", 'NxGBNexGenBots7ed2dc') # youtube song api ke
