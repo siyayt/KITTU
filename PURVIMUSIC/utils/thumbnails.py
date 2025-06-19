@@ -1,33 +1,23 @@
-import os
-import re
-
-import aiofiles
-import aiohttp
-from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageFont
-from unidecode import unidecode
-from youtubesearchpython.__future__ import VideosSearch
-
 from PURVIMUSIC import app
 from config import YOUTUBE_IMG_URL
 
 
+import os
+import re
+import aiohttp
+import aiofiles
+from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageEnhance
+from youtubesearchpython.__future__ import VideosSearch
+
+def clear(text):
+    return re.sub("\s+", " ", text).strip()
+
 def changeImageSize(maxWidth, maxHeight, image):
     widthRatio = maxWidth / image.size[0]
     heightRatio = maxHeight / image.size[1]
-    newWidth = int(widthRatio * image.size[0])
-    newHeight = int(heightRatio * image.size[1])
-    newImage = image.resize((newWidth, newHeight))
-    return newImage
-
-
-def clear(text):
-    list = text.split(" ")
-    title = ""
-    for i in list:
-        if len(title) + len(i) < 60:
-            title += " " + i
-    return title.strip()
-
+    newWidth = int(image.size[0] * min(widthRatio, heightRatio))
+    newHeight = int(image.size[1] * min(widthRatio, heightRatio))
+    return image.resize((newWidth, newHeight))
 
 async def get_thumb(videoid):
     if os.path.isfile(f"cache/{videoid}.png"):
@@ -57,6 +47,7 @@ async def get_thumb(videoid):
             except:
                 channel = "Unknown Channel"
 
+        # Download thumbnail
         async with aiohttp.ClientSession() as session:
             async with session.get(thumbnail) as resp:
                 if resp.status == 200:
@@ -65,58 +56,77 @@ async def get_thumb(videoid):
                     await f.close()
 
         youtube = Image.open(f"cache/thumb{videoid}.png")
-        image1 = changeImageSize(1280, 720, youtube)
-        image2 = image1.convert("RGBA")
-        background = image2.filter(filter=ImageFilter.BoxBlur(10))
+        youtube = youtube.convert("RGBA")
+
+        # Main background (1280x720) with more dark blur
+        background = youtube.resize((1280, 720)).filter(ImageFilter.GaussianBlur(radius=10))
         enhancer = ImageEnhance.Brightness(background)
-        background = enhancer.enhance(0.5)
+        background = enhancer.enhance(0.6)  # 
+
         draw = ImageDraw.Draw(background)
+
+        # Center thumbnail (942x422) with white border
+        center_thumb_size = (942, 422)
+        center_thumb = youtube.resize(center_thumb_size)
+
+        border_size = 14
+        bordered_center_thumb = Image.new("RGBA", (center_thumb_size[0] + 2 * border_size, center_thumb_size[1] + 2 * border_size), (255, 255, 255))
+        bordered_center_thumb.paste(center_thumb, (border_size, border_size))
+
+        # Center position 
+        pos_x = (1280 - bordered_center_thumb.size[0]) // 2
+        pos_y = ((720 - bordered_center_thumb.size[1]) // 2) - 30  # 30px 
+
+        background.paste(bordered_center_thumb, (pos_x, pos_y))
+
+        # Fonts
         arial = ImageFont.truetype("PURVIMUSIC/assets/font2.ttf", 30)
         font = ImageFont.truetype("PURVIMUSIC/assets/font.ttf", 30)
-        text_size = draw.textsize("TEAM PURVI BOTS    ", font=font)
-        draw.text((1280 - text_size[0] - 10, 10), "TEAM THUNDER BOTS    ", fill="white", font=font)
+        bold_font = ImageFont.truetype("PURVIMUSIC/assets/font.ttf", 33)
+
+        # Top-right "text"
+        text_size = draw.textsize("PURVI BOTS    ", font=font)
+        draw.text((1280 - text_size[0] - 10, 10), "THUNDER BOTS    ", fill="yellow", font=font)
+
+        # Channel name + Views 
         draw.text(
-            (55, 560),
+            (55, 580),  
             f"{channel} | {views[:23]}",
             (255, 255, 255),
             font=arial,
         )
+
+        # Video Title 
         draw.text(
-            (57, 600),
-            clear(title),
+            (57, 620), 
+            title,
             (255, 255, 255),
             font=font,
         )
-        draw.line(
-            [(55, 660), (1220, 660)],
-            fill="white",
-            width=5,
-            joint="curve",
-        )
-        draw.ellipse(
-            [(918, 648), (942, 672)],
-            outline="white",
-            fill="white",
-            width=15,
-        )
-        draw.text(
-            (36, 685),
-            "00:00",
-            (255, 255, 255),
-            font=arial,
-        )
-        draw.text(
-            (1185, 685),
-            f"{duration[:23]}",
-            (255, 255, 255),
-            font=arial,
-        )
+
+        # 
+        draw.text((55, 655), "00:00", fill="white", font=bold_font)
+
+        # Line
+        start_x = 150
+        end_x = 1130
+        line_y = 670
+        draw.line([(start_x, line_y), (end_x, line_y)], fill="white", width=4)
+
+        # Duration 
+        duration_text_size = draw.textsize(duration, font=bold_font)
+        draw.text((end_x + 10, 655), duration, fill="white", font=bold_font)
+
+        # Clean up
         try:
             os.remove(f"cache/thumb{videoid}.png")
         except:
             pass
+
         background.save(f"cache/{videoid}.png")
         return f"cache/{videoid}.png"
+
     except Exception as e:
         print(e)
         return YOUTUBE_IMG_URL
+                                            
