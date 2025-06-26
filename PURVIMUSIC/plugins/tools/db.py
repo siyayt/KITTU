@@ -6,7 +6,7 @@ from pyrogram.types import Message
 from PURVIMUSIC import app
 import os
 from config import OWNER_ID
-from PURVIMUSIC import SUDOERS
+from PURVIMUSIC.misc import SUDOERS
 
 BASE = "https://batbin.me/"
 
