@@ -4,7 +4,7 @@ from pyrogram import Client, filters, enums
 class BUTTONS(object):
     ABUTTON = [
     [
-        InlineKeyboardButton("˹ sυᴘᴘσʀᴛ ˼", url="https://t.me/+PaEtaAu9DI9mYzc9"),
+        InlineKeyboardButton("˹ sυᴘᴘσʀᴛ ˼", url="https://t.me/+IvUyIY_vMY1jOTdl"),
         InlineKeyboardButton("˹ υᴘᴅᴧᴛєs ˼", url="https://t.me/ARISHFA_UPDATE")
     ],
     [
