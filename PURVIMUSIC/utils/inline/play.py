@@ -54,12 +54,22 @@ def stream_markup_timer(_, chat_id, played, dur):
         bar = "▰▰▰▰▰▰▰▰▰▰"
         
     buttons = [
+        # Row 1: Progress bar with timing
         [
             InlineKeyboardButton(
-                text=f"{played} {bar} {dur}",
-                callback_data="GetTimer",
+                text=f"{played.lower()}  {bar}  {dur.lower()}",
+                callback_data="GetTimer"
             )
         ],
+
+        # Row 2: Three new buttons (Backward, History, Forward)
+        [
+            InlineKeyboardButton(text="⪻  -30s", callback_data=f"SEEKBACKWARD|{chat_id}|30"),
+            InlineKeyboardButton(text="📥", callback_data=f"DOWNLOAD|{chat_id}"),
+            InlineKeyboardButton(text="+30s  ⪼", callback_data=f"SEEKFORWARD|{chat_id}|30"),
+        ],
+
+        # Row 3: Main control buttons
         [
             InlineKeyboardButton(text="▷", callback_data=f"ADMIN Resume|{chat_id}"),
             InlineKeyboardButton(text="II", callback_data=f"ADMIN Pause|{chat_id}"),
@@ -67,14 +77,18 @@ def stream_markup_timer(_, chat_id, played, dur):
             InlineKeyboardButton(text="‣‣I", callback_data=f"ADMIN Skip|{chat_id}"),
             InlineKeyboardButton(text="▢", callback_data=f"ADMIN Stop|{chat_id}"),
         ],
-         [
-             InlineKeyboardButton(text="σᴡηєʀ", url="https://t.me/ll_ISTKHAR_BABY_lll"),
-             InlineKeyboardButton(text="ѕᴜᴘᴘσʀᴛ", url="https://t.me/+IvUyIY_vMY1jOTdl")
-         ],
+
+        # Row 4: Support buttons
         [
-            InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data="close"),
+            InlineKeyboardButton("𝑭𝑹𝑬𝑬 𝑷𝑹𝑶𝑴𝑶𝑻𝑰𝑶𝑵 📢", url="https://t.me/Iamistkhar")            
+        ],
+
+        # Row 5: Close button
+        [
+            InlineKeyboardButton(text=_["CLOSE_BUTTON"].lower(), callback_data="close")
         ]
     ]
+
     return buttons
 
 
