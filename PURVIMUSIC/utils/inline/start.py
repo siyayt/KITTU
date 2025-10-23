@@ -29,7 +29,7 @@ def private_panel(_):
             InlineKeyboardButton(text="˹ ʏᴛ-ᴧᴘɪ ˼", callback_data="bot_info_data"),
         ],
         [
-            InlineKeyboardButton(text="sσυʀᴄє ᴄσᴅє", url=f"https://github.com/TEAM-ISTKHAR/IstkharMusic.git"),
+        #    InlineKeyboardButton(text="sσυʀᴄє ᴄσᴅє", url=f"https://github.com/TEAM-ISTKHAR/IstkharMusic.git"),
         InlineKeyboardButton(text=_["S_B_13"], callback_data="abot_cb"),  
         ],
         [
