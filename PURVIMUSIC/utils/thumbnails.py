@@ -265,7 +265,7 @@ async def get_thumb(videoid: str, chat_id: int = None) -> str:
             print(f"[thumb] DP pasted for user_id={user_id}")
 
     font = ImageFont.truetype("PURVIMUSIC/assets/font.ttf", 28)
-    text = "@JullyMusicBot"
+    text = "@Nysamusicbot"
     draw.text((1150, 10), text, fill="yellow", font=font)
     os.remove(thumb_dl)
     bg.save(cache_path)
