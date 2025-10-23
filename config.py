@@ -10,17 +10,17 @@ load_dotenv()
 API_ID = int(getenv("API_ID"))
 API_HASH = getenv("API_HASH")
 
-EVAL = list(map(int, getenv("EVAL", "7716352578 7091230649").split()))
+EVAL = list(map(int, getenv("EVAL", "7934504512 7934504512").split()))
 # ------------------------------------------------------
 BOT_TOKEN = getenv("BOT_TOKEN")
 # -------------------------------------------------------
-OWNER_USERNAME = getenv("OWNER_USERNAME","Ownergit")
+OWNER_USERNAME = getenv("OWNER_USERNAME","ll_raja_babu_ll")
 # --------------------------------------------------------
-BOT_USERNAME = getenv("BOT_USERNAME" , "ISTKHARkoBot")
+BOT_USERNAME = getenv("BOT_USERNAME" , "nysamusicbot")
 # --------------------------------------------------------
-BOT_NAME = getenv("BOT_NAME" , "ISTKHARko")
+BOT_NAME = getenv("BOT_NAME" , "nysamusic")
 # ---------------------------------------------------------
-ASSUSERNAME = getenv("ASSUSERNAME" , "MissYumikoo")
+ASSUSERNAME = getenv("ASSUSERNAME" , "nysamusic")
 # ---------------------------------------------------------
 #---------------------------------------------------------------
 #---------------------------------------------------------------
@@ -28,9 +28,9 @@ MONGO_DB_URI = getenv("MONGO_DB_URI", None)
 
 DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 17000))
 # ----------------------------------------------------------------
-LOGGER_ID = int(getenv("LOGGER_ID", -1002141133985))
+LOGGER_ID = int(getenv("LOGGER_ID", -1001648620646))
 # ----------------------------------------------------------------
-OWNER_ID = int(getenv("OWNER_ID", 7403621976))
+OWNER_ID = int(getenv("OWNER_ID", 7934504512))
 # ---------------------------------------------------------------
 HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
 # ----------------------------------------------------------------
