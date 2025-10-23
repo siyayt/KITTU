@@ -1,10 +1,12 @@
 import time
 import random
+import asyncio
 from pyrogram import filters
 from pyrogram.enums import ChatType
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from youtubesearchpython.__future__ import VideosSearch
 
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InputMediaPhoto
 import config
 from PURVIMUSIC import app
 from PURVIMUSIC.misc import _boot_
@@ -25,7 +27,9 @@ from PURVIMUSIC.utils.inline import help_pannel, private_panel, start_panel
 from config import BANNED_USERS
 from strings import get_string
 
-NEXIO = [
+#--------------------------
+
+NEXI_VID = [
     "https://files.catbox.moe/4q7c4w.jpg",
     "https://files.catbox.moe/90z6sq.jpg",
     "https://files.catbox.moe/rdfi4z.jpg",
@@ -47,17 +51,38 @@ NEXIO = [
     "https://telegra.ph/file/d30d11c4365c025c25e3e.jpg",
 ]
 
-
 @app.on_message(filters.command(["start"]) & filters.private & ~BANNED_USERS)
 @LanguageStart
 async def start_pm(client, message: Message, _):
     await add_served_user(message.from_user.id)
+    
+    # Typing effect part
+    typing_message = await message.reply("<b>ᴅɪηɢ..ᴅσηɢ..🥀</b>")  # Initial message
+    
+    # Simulate typing
+    typing_text = "<b>𝖲ᴛᴧʀᴛɪηɢ...❤️‍🔥</b>**"
+    
+    for i in range(1, len(typing_text) + 1):  # Loop through each character
+        try:
+            await typing_message.edit_text(typing_text[:i])
+            await asyncio.sleep(0.001)  # Add delay to simulate typing
+        except Exception as e:
+            print(f"Error while editing message: {e}")  # Print error if occurs
+
+    await asyncio.sleep(1)  # Keep message for a while
+    await typing_message.delete()  # Delete the message
+
+    # Continue with the existing logic after typing effect
     if len(message.text.split()) > 1:
         name = message.text.split(None, 1)[1]
+
+        if name[0:3] == "del":
+            await del_plist_msg(client=client, message=message, _=_)
+        
         if name[0:4] == "help":
             keyboard = help_pannel(_)
             return await message.reply_photo(
-                random.choice(NEXIO),
+                random.choice(NEXI_VID),
                 caption=_["help_1"].format(config.SUPPORT_CHAT),
                 reply_markup=keyboard,
             )
@@ -108,25 +133,8 @@ async def start_pm(client, message: Message, _):
                 )
     else:
         out = private_panel(_)
-        baby = await message.reply_text(f"**__ᴅɪηɢ ᴅᴏηɢ.🥀__**")
-        await baby.edit_text(f"**__ᴅɪηɢ ᴅᴏηɢ..🥀__**")
-        await baby.edit_text(f"**__ᴅɪηɢ ᴅᴏηɢ...🥀__**")
-        await baby.edit_text(f"**__ᴅɪηɢ ᴅᴏηɢ....🥀__**")
-        await baby.edit_text(f"**__ᴅɪηɢ ᴅᴏηɢ.....🥀__**")
-        await baby.edit_text(f"**__sᴛᴧʀᴛɪηɢ.❤️‍🔥__**")
-        await baby.edit_text(f"**__sᴛᴧʀᴛɪηɢ..❤️‍🔥__**")
-        await baby.edit_text(f"**__sᴛᴧʀᴛɪηɢ...❤️‍🔥__**")
-        await baby.edit_text(f"**__sᴛᴧʀᴛɪηɢ....❤️‍🔥__**")
-        await baby.edit_text(f"**__sᴛᴧʀᴛɪηɢ.....❤️‍🔥__**")
-        await baby.edit_text(f"**__ʙσᴛ sᴛᴧʀᴛєᴅ.💤__**")
-        await baby.edit_text(f"**__ʙσᴛ sᴛᴧʀᴛєᴅ..💤__**")
-        await baby.edit_text(f"**__ʙσᴛ sᴛᴧʀᴛєᴅ...💤__**")
-        await baby.edit_text(f"**__ʙσᴛ sᴛᴧʀᴛєᴅ....💤__**")
-        await baby.edit_text(f"**__ʙσᴛ sᴛᴧʀᴛєᴅ.....💤__**")
-        await baby.delete()
-        
         await message.reply_photo(
-            random.choice(NEXIO),
+            random.choice(NEXI_VID),
             caption=_["start_2"].format(message.from_user.mention, app.mention),
             reply_markup=InlineKeyboardMarkup(out),
         )
@@ -143,7 +151,7 @@ async def start_gp(client, message: Message, _):
     out = start_panel(_)
     uptime = int(time.time() - _boot_)
     await message.reply_photo(
-        random.choice(NEXIO),
+        random.choice(NEXI_VID),
         caption=_["start_1"].format(app.mention, get_readable_time(uptime)),
         reply_markup=InlineKeyboardMarkup(out),
     )
@@ -178,7 +186,7 @@ async def welcome(client, message: Message):
 
                 out = start_panel(_)
                 await message.reply_photo(
-                    random.choice(NEXIO),
+                    random.choice(NEXI_VID),
                     caption=_["start_3"].format(
                         message.from_user.mention,
                         app.mention,
