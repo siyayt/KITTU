@@ -78,12 +78,7 @@ def stream_markup_timer(_, chat_id, played, dur):
             InlineKeyboardButton(text="▢", callback_data=f"ADMIN Stop|{chat_id}"),
         ],
 
-        # Row 4: Support buttons
-        [
-            InlineKeyboardButton("𝑭𝑹𝑬𝑬 𝑷𝑹𝑶𝑴𝑶𝑻𝑰𝑶𝑵 📢", url="https://t.me/Iamistkhar")            
-        ],
-
-        # Row 5: Close button
+        # Row 4: Close button
         [
             InlineKeyboardButton(text=_["CLOSE_BUTTON"].lower(), callback_data="close")
         ]
@@ -101,10 +96,7 @@ def stream_markup(_, chat_id):
            # InlineKeyboardButton(text="‣‣I", callback_data=f"ADMIN Skip|{chat_id}"),
            # InlineKeyboardButton(text="▢", callback_data=f"ADMIN Stop|{chat_id}"),
          #],
-        [
-             InlineKeyboardButton(text="σᴡηєʀ", url="https://t.me/ll_istkhar_baby_lll"),
-             InlineKeyboardButton(text="ѕᴜᴘᴘσʀᴛ", url="https://t.me/+IvUyIY_vMY1jOTdl")
-         ],
+        
         [
             InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data="close"),
         ]
