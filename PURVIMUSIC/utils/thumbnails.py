@@ -266,7 +266,7 @@ async def get_thumb(videoid: str, chat_id: int = None) -> str:
 
     font = ImageFont.truetype("PURVIMUSIC/assets/font.ttf", 28)
     text = "@Nysamusicbot"
-    draw.text((1150, 10), text, fill="yellow", font=font)
+    draw.text((1050, 10), text, fill="yellow", font=font)
     os.remove(thumb_dl)
     bg.save(cache_path)
     return cache_path
